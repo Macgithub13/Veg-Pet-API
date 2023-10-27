@@ -3,7 +3,7 @@ import connection from './connection.js';
 export async function inserirProduto(produto){
 
     let command=`
-        insert into tb_produto(nm_produto,id_categoria,id_animal,ds_marca,ds_peso,vl_preco,nr_desconto,bt_disponivel,dt_lancamento,nr_qntdEstoque,nr_vendas,vl_avaliacao,qtd_favoritos,id_adm)
+        insert into TB_PRODUTO(nm_produto,id_categoria,id_animal,ds_marca,ds_peso,vl_preco,nr_desconto,bt_disponivel,dt_lancamento,nr_qntdEstoque,nr_vendas,vl_avaliacao,qtd_favoritos,id_adm)
 	    values(?,?,?,?,?,?,?,?,?,?,0,0.0,0,?)`;
     
     const [resp]=await connection.query(command,[produto.nome,produto.categoria,produto.animal,produto.marca,produto.peso,produto.preco,produto.desconto,produto.disponivel,produto.lancamento,produto.estoque,produto.adm]);
@@ -22,7 +22,7 @@ export async function verificarNomeProduto(nome){
         select ID_PRODUTO   as ID,
                 NM_PRODUTO  as Nome
 
-        from tb_produto
+        from TB_PRODUTO
         where nm_produto=?
     `;
 
@@ -38,7 +38,7 @@ export async function verificarProduto(id){
     let command=`
     
         Select ID_PRODUTO
-            from tb_produto
+            from TB_PRODUTO
 
             WHERE id_produto=?
     `;
@@ -53,7 +53,7 @@ export async function consultarProdutos(filtro){
 
     let comandoBase=`    
             Select 
-                TB_produto.ID_produto       as ID,
+                TB_PRODUTO.ID_produto       as ID,
                 DS_imagem                   as Capa,
                 DS_categoria                as Categoria,
                 NM_produto                  as Nome,
@@ -68,10 +68,10 @@ export async function consultarProdutos(filtro){
                 QTD_favoritos               as Favoritos,
                 NM_adm                      as Adm
 
-                from TB_produto
+                from TB_PRODUTO
 
-                    Inner join TB_imagem
-                        ON TB_produto.ID_produto=TB_imagem.ID_produto
+                    Inner join TB_IMAGEM
+                        ON TB_PRODUTO.ID_produto=TB_imagem.ID_produto
                     Inner Join TB_categoria
                         ON TB_produto.ID_categoria=TB_categoria.ID_categoria
                     Inner Join TB_animal
