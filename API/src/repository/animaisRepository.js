@@ -6,7 +6,7 @@ export async function verificarAnimais(id){
     
         select ID_ANIMAL        as ID,
                 NM_ANIMAL    as Animal
-        from tb_animal
+        from TB_ANIMAL
         Where id_animal=?
     `;
 
@@ -21,7 +21,7 @@ export async function listarAnimais(){
     
         Select  ID_ANIMAL       as ID,
                 NM_ANIMAL       as Animal
-            from tb_animal
+            from TB_ANIMAL
     `;
 
     const [resp]=await connection.query(command,[]);

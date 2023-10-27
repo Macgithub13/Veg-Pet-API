@@ -5,7 +5,7 @@ export async function Cadastro(resposta){
 
         let comando = 
         `
-        INSERT INTO tb_cliente (nm_nome, ds_email, ds_cpf, dt_nasc, ds_senha,qtd_pedidos)
+        INSERT INTO TB_CLIENTE (nm_nome, ds_email, ds_cpf, dt_nasc, ds_senha,qtd_pedidos)
 		VALUES (?,?,?,?,?,0)
         `
         const [resp] = await connection.query(comando, [
@@ -28,7 +28,7 @@ export async function VerificarEmail(email){
     `
     SELECT id_cliente    as id,
           ds_email       as email
-  FROM tb_cliente WHERE ds_email=?;
+  FROM TB_CLIENTE WHERE ds_email=?;
   `
 
   const [resp] = await connection.query(cn, [email])
@@ -40,7 +40,7 @@ export async function VerificarCpf(cpf){
     `
     SELECT id_cliente    as id,
           ds_cpf       as cpf
-  FROM tb_cliente WHERE ds_cpf=?;
+  FROM TB_CLIENTE WHERE ds_cpf=?;
   `
 
   const [resp] = await connection.query(cn, [cpf])

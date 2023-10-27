@@ -4,15 +4,15 @@ export async function consultarClientes(filtro){
 
     let comandoBase=`
     
-        Select 	TB_Cliente.ID_cliente 	as ID, 
+        Select 	TB_CLIENTE.ID_cliente 	as ID, 
         NM_nome 				as Nome, 
         DS_email 				as Email,
         DS_cpf 					as CPF,
         DT_nasc					as Nascimento,
         DS_senha				as Senha,
         QTD_pedidos				as Pedidos,
-        TB_cliente.ID_endereco	as Endereco,
-        TB_endereco.ID_endereco as ID_Endereco,
+        TB_CLIENTE.ID_endereco	as Endereco,
+        TB_ENDERECO.ID_endereco as ID_Endereco,
         NR_cep					as CEP,
         NM_rua					as Rua,
         NM_bairro				as Bairro,
@@ -21,9 +21,9 @@ export async function consultarClientes(filtro){
         NM_estado				as Estado,
         NM_cidade				as Cidade
         
-        from TB_cliente
-            Left Join TB_endereco
-                on TB_cliente.ID_cliente=TB_endereco.ID_cliente`;
+        from TB_CLIENTE
+            Left Join TB_ENDERECO
+                on TB_CLIENTE.ID_cliente=TB_ENDERECO.ID_cliente`;
 
     let comandosWhere=' WHERE ';
     let comandosOrder=' ORDER BY ';
@@ -49,7 +49,7 @@ export async function consultarClientes(filtro){
 
     if(filtro.semEndereco){
 
-        colunasWhere[contWhere]=` TB_cliente.ID_Endereco IS NULL`;
+        colunasWhere[contWhere]=` TB_CLIENTE.ID_Endereco IS NULL`;
         contWhere=contWhere+1;
     }
 

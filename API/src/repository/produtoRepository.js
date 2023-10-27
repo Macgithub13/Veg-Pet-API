@@ -71,13 +71,13 @@ export async function consultarProdutos(filtro){
                 from TB_PRODUTO
 
                     Inner join TB_IMAGEM
-                        ON TB_PRODUTO.ID_produto=TB_imagem.ID_produto
-                    Inner Join TB_categoria
-                        ON TB_produto.ID_categoria=TB_categoria.ID_categoria
-                    Inner Join TB_animal
-                        ON TB_produto.ID_animal=TB_animal.ID_animal
-                    Inner Join TB_login_adm
-						ON	TB_produto.ID_adm=TB_login_adm.ID_adm
+                        ON TB_PRODUTO.ID_produto=TB_IMAGEM.ID_produto
+                    Inner Join TB_CATEGORIA
+                        ON TB_PRODUTO.ID_categoria=TB_CATEGORIA.ID_categoria
+                    Inner Join TB_ANIMAL
+                        ON TB_PRODUTO.ID_animal=TB_ANIMAL.ID_animal
+                    Inner Join TB_LOGIN_ADM
+						ON	TB_PRODUTO.ID_adm=TB_LOGIN_ADM.ID_adm
 
                         Where NR_posicao=1 `;
 

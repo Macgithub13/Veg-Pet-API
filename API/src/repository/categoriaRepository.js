@@ -6,7 +6,7 @@ export async function verificarCategorias(id){
     
         select ID_CATEGORIA     as ID,
                 DS_CATEGORIA    as Categoria
-        from tb_categoria
+        from TB_CATEGORIA
         Where id_categoria=?
     `;
 
@@ -21,7 +21,7 @@ export async function listarCategorias(){
     
         Select  ID_CATEGORIA    as ID,
                 DS_CATEGORIA    as Categoria
-            from tb_categoria
+            from TB_CATEGORIA
     `;
 
     const [resp]=await connection.query(command,[]);
