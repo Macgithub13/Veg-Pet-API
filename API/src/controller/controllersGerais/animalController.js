@@ -1,14 +1,14 @@
 import express, { Router } from 'express';
 
-import { listarCategorias } from '../repository/categoriaRepository.js';
+import { listarAnimais } from '../../repository/animalRepositorys/animalRepository.js';
 
 const endpoints = Router();
 
-endpoints.get('/categoria/listar', async (req,resp) => {
+endpoints.get('/animal/listar', async (req,resp) => {
 
     try{
 
-        const respostaRepository=await listarCategorias();
+        const respostaRepository=await listarAnimais();
 
         resp.send(respostaRepository);
     }

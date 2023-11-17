@@ -1,19 +1,19 @@
-import connection from './connection.js';
+import connection from "../../connection.js";
 
 export async function consultarClientes(filtro){
 
     let comandoBase=`
     
-        Select 	TB_CLIENTE.ID_cliente 	as ID, 
+        Select 	TB_Cliente.ID_cliente 	as ID, 
         NM_nome 				as Nome, 
         DS_email 				as Email,
         DS_cpf 					as CPF,
         DT_nasc					as Nascimento,
         DS_senha				as Senha,
         QTD_pedidos				as Pedidos,
-        TB_CLIENTE.ID_endereco	as Endereco,
-        TB_ENDERECO.ID_endereco as ID_Endereco,
-        NR_cep					as CEP,
+        TB_cliente.ID_endereco	as Endereco,
+        TB_endereco.ID_endereco as ID_Endereco,
+        ds_cep					as CEP,
         NM_rua					as Rua,
         NM_bairro				as Bairro,
         DS_numero				as Número,
@@ -21,9 +21,9 @@ export async function consultarClientes(filtro){
         NM_estado				as Estado,
         NM_cidade				as Cidade
         
-        from TB_CLIENTE
-            Left Join TB_ENDERECO
-                on TB_CLIENTE.ID_cliente=TB_ENDERECO.ID_cliente`;
+        from TB_cliente
+            Left Join TB_endereco
+                on TB_cliente.ID_cliente=TB_endereco.ID_cliente`;
 
     let comandosWhere=' WHERE ';
     let comandosOrder=' ORDER BY ';
@@ -49,7 +49,7 @@ export async function consultarClientes(filtro){
 
     if(filtro.semEndereco){
 
-        colunasWhere[contWhere]=` TB_CLIENTE.ID_Endereco IS NULL`;
+        colunasWhere[contWhere]=` TB_cliente.ID_Endereco IS NULL`;
         contWhere=contWhere+1;
     }
 
@@ -82,6 +82,15 @@ export async function consultarClientes(filtro){
         contWhere=contWhere+1;
     }
 
+    if(filtro.clienteEspecifico){
+
+        let puxarCliente=[];
+
+        puxarCliente.push(filtro.cliente);
+
+        colunasWhere[contWhere]=` NM_nome like('%${puxarCliente[0]}%') OR DS_email like('%${puxarCliente[0]}%') OR DS_cpf like('%${puxarCliente[0]}%')`;
+    }
+
     // Filtros para o order BY
     if(filtro.maisPedidos){
 
@@ -91,7 +100,7 @@ export async function consultarClientes(filtro){
 
     if(filtro.ordemAlfabetica){
 
-        colunasOrder[contOrder]=` NM_nome asc`;
+        colunasOrder[contOrder]=` nm_nome asc`;
         contOrder=contOrder+1;
     }
 
@@ -148,8 +157,8 @@ export async function consultarClientes(filtro){
     }
 
     let comandoFinal=comandoBase+comandosWhere+comandosOrder;
-    
-    const [resp]= await connection.query(comandoFinal,[filtro.semPedidos,filtro.semEndereco,filtro.anoNascimento,filtro.ano,filtro.estadoEspecifico,filtro.estado,filtro.cidadeEspecifica,filtro.cidade,filtro.clienteEspecifico,filtro.ordemAlfabetica,filtro.nascimentoMaisNovos,filtro.nascimentoMaisVelhos]);
+
+    const [resp]= await connection.query(comandoFinal,[filtro.semPedidos,filtro.semEndereco,filtro.anoNascimento,filtro.ano,filtro.estadoEspecifico,filtro.estado,filtro.cidadeEspecifica,filtro.cidade,filtro.clienteEspecifico,filtro.cliente,filtro.ordemAlfabetica,filtro.nascimentoMaisNovos,filtro.nascimentoMaisVelhos]);
 
     return resp;
 }

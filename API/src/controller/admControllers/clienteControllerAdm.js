@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 
-import { consultarClientes } from '../repository/clienteRepository.js';
+import { consultarClientes } from '../../repository/clientRepositorys/adm/consultaRepository.js';
 
 const endpoints = Router();
 

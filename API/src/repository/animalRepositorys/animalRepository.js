@@ -1,4 +1,4 @@
-import connection from './connection.js';
+import connection from "../connection.js";
 
 export async function verificarAnimais(id){
 
@@ -6,7 +6,7 @@ export async function verificarAnimais(id){
     
         select ID_ANIMAL        as ID,
                 NM_ANIMAL    as Animal
-        from TB_ANIMAL
+        from tb_animal
         Where id_animal=?
     `;
 
@@ -21,7 +21,7 @@ export async function listarAnimais(){
     
         Select  ID_ANIMAL       as ID,
                 NM_ANIMAL       as Animal
-            from TB_ANIMAL
+            from tb_animal
     `;
 
     const [resp]=await connection.query(command,[]);
