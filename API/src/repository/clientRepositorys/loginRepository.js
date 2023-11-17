@@ -5,7 +5,7 @@ export async function login(emailCPF,senha) {
         DS_EMAIL    as Email,
         DS_CPF        as CPF,
         DS_SENHA     as Senha
-        from tb_cliente
+        from TB_CLIENTE
         Where DS_EMAIL=?  OR DS_CPF=?
         AND ds_senha=?`
             

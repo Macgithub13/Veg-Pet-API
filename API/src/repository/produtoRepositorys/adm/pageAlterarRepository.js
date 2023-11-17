@@ -4,8 +4,8 @@ export async function consultarProduto(id){
 
     let command = 
         `Select 
-            TB_produto.ID_produto       as ID,
-            TB_produto.id_categoria     as Categoria_ID,
+            TB_PRODUTO.ID_produto       as ID,
+            TB_PRODUTO.id_categoria     as Categoria_ID,
             DS_categoria                as Categoria,
             NM_produto                  as Nome,
             TB_PRODUTO.id_animal        as Animal_ID,
@@ -26,16 +26,16 @@ export async function consultarProduto(id){
             NM_adm                      as Adm,
             TB_PRODUTO.id_adm           as Adm_ID
 
-        from TB_produto
+        from TB_PRODUTO
 
-            Inner Join TB_categoria
-                ON TB_produto.ID_categoria=TB_categoria.ID_categoria
-            Inner Join TB_animal
-                ON TB_produto.ID_animal=TB_animal.ID_animal
-            Inner Join TB_login_adm
-                ON	TB_produto.ID_adm=TB_login_adm.ID_adm
+            Inner Join TB_CATEGORIA
+                ON TB_PRODUTO.ID_categoria=TB_CATEGORIA.ID_categoria
+            Inner Join TB_ANIMAL
+                ON TB_PRODUTO.ID_animal=TB_ANIMAL.ID_animal
+            Inner Join TB_LOGIN_ADM
+                ON	TB_PRODUTO.ID_adm=TB_LOGIN_ADM.ID_adm
                 
-            Where TB_produto.ID_produto=?`;
+            Where TB_PRODUTO.ID_produto=?`;
 
     const [resp]=await connection.query(command,[id]);
 
@@ -45,7 +45,7 @@ export async function consultarProduto(id){
 export async function alterarProduto(produto,id){
 
     const command=`
-        update tb_produto
+        update TB_PRODUTO
             set nm_produto=?,
                 id_categoria=?,
                 id_animal=?,
@@ -69,7 +69,7 @@ export async function deletarProduto(id){
 
     const command=`
     
-        DELETE from tb_produto
+        DELETE from TB_PRODUTO
         WHERE id_produto=?
     `;
 

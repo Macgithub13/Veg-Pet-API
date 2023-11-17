@@ -7,7 +7,7 @@ export async function verificarAdm(id){
         select ID_ADM     as ID,
                 NM_ADM          as Adm,
                 DS_SENHA        as Senha
-        from tb_login_adm
+        from TB_LOGIN_ADM
         Where id_adm=?
     `;
 

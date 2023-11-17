@@ -5,9 +5,9 @@ export async function consultarProdutos(filtro){
 
     let comandoBase=`    
             Select 
-                TB_produto.ID_produto       as ID,
+                TB_PRODUTO.ID_produto       as ID,
                 DS_imagem                   as Capa,
-                TB_produto.id_categoria     as Categoria_ID,
+                TB_PRODUTO.id_categoria     as Categoria_ID,
                 DS_categoria                as Categoria,
                 NM_produto                  as Nome,
                 TB_PRODUTO.id_animal        as Animal_ID,
@@ -26,16 +26,16 @@ export async function consultarProdutos(filtro){
                 NM_adm                      as Adm,
                 TB_PRODUTO.id_adm           as Adm_ID
 
-                from TB_produto
+                from TB_PRODUTO
 
-                    Inner join TB_imagem
-                        ON TB_produto.ID_produto=TB_imagem.ID_produto
-                    Inner Join TB_categoria
-                        ON TB_produto.ID_categoria=TB_categoria.ID_categoria
-                    Inner Join TB_animal
-                        ON TB_produto.ID_animal=TB_animal.ID_animal
-                    Inner Join TB_login_adm
-						ON	TB_produto.ID_adm=TB_login_adm.ID_adm
+                    Inner join TB_IMAGEM
+                        ON TB_PRODUTO.ID_produto=TB_IMAGEM.ID_produto
+                    Inner Join TB_CATEGORIA
+                        ON TB_PRODUTO.ID_categoria=TB_CATEGORIA.ID_categoria
+                    Inner Join TB_ANIMAL
+                        ON TB_PRODUTO.ID_animal=TB_ANIMAL.ID_animal
+                    Inner Join TB_LOGIN_ADM
+						ON	TB_PRODUTO.ID_adm=TB_LOGIN_ADM.ID_adm
 
                         Where NR_posicao=1 `;
 
@@ -61,7 +61,7 @@ export async function consultarProdutos(filtro){
 
         puxarIDCategoria.push(filtro.categoria);
 
-        comandoCondicao=comandoCondicao+` and tb_produto.id_categoria=${filtro.categoria}`;
+        comandoCondicao=comandoCondicao+` and TB_PRODUTO.id_categoria=${filtro.categoria}`;
     }
 
     if(filtro.porAnimal){
@@ -97,7 +97,7 @@ export async function consultarProdutos(filtro){
 
         puxarProduto.push(filtro.produto);
 
-        comandoCondicao=comandoCondicao+` and nm_produto like('%${puxarProduto[0]}%') OR TB_produto.id_produto like('%${puxarProduto[0]}%')`;
+        comandoCondicao=comandoCondicao+` and nm_produto like('%${puxarProduto[0]}%') OR TB_PRODUTO.id_produto like('%${puxarProduto[0]}%')`;
     }
 
     let comandoOrder=`ORDER BY `;
