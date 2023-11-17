@@ -4,8 +4,8 @@ export async function verificarAnimais(id){
 
     let command=`
     
-        select ID_ANIMAL        as ID,
-                NM_ANIMAL    as Animal
+        select id_animal        as ID,
+                nm_animal    as Animal
         from TB_ANIMAL
         Where id_animal=?
     `;
@@ -19,8 +19,8 @@ export async function listarAnimais(){
 
     let command=`
     
-        Select  ID_ANIMAL       as ID,
-                NM_ANIMAL       as Animal
+        Select  id_animal       as ID,
+                nm_animal       as Animal
             from TB_ANIMAL
     `;
 

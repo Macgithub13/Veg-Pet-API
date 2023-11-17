@@ -18,8 +18,8 @@ export async function verificarNomeProduto(nome){
 
     let command=`
     
-        select ID_PRODUTO   as ID,
-                NM_PRODUTO  as Nome
+        select id_produto   as ID,
+                nm_produto  as Nome
 
         from TB_PRODUTO
         where nm_produto=?
@@ -35,7 +35,7 @@ export async function verificarProduto(id){
 
     let command=`
     
-        Select ID_PRODUTO
+        Select id_produto
             from TB_PRODUTO
 
             WHERE id_produto=?
@@ -49,7 +49,7 @@ export async function verificarProduto(id){
 // Ver o último produto cadastrado para a página de conclusão do cadastro
 export async function ultimoProduto(){
 
-    const command=`SELECT ID_PRODUTO FROM TB_PRODUTO ORDER BY ID_PRODUTO DESC LIMIT 1`;
+    const command=`SELECT id_produto FROM TB_PRODUTO ORDER BY id_produto DESC LIMIT 1`;
 
     const [resp]=await connection.query(command,[]);
 

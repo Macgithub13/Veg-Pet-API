@@ -16,7 +16,7 @@ export async function verificarPosicao(id,posicao){
 
     let command=`
     
-        select ID_IMAGEM,ID_PRODUTO,NR_POSICAO
+        select id_imagem,id_produto,nr_posicao
             from TB_IMAGEM
 
             WHERE   id_produto=?

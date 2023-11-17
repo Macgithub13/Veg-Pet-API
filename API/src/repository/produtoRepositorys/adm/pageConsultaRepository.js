@@ -5,39 +5,39 @@ export async function consultarProdutos(filtro){
 
     let comandoBase=`    
             Select 
-                TB_PRODUTO.ID_produto       as ID,
-                DS_imagem                   as Capa,
+                TB_PRODUTO.id_produto       as ID,
+                ds_imagem                   as Capa,
                 TB_PRODUTO.id_categoria     as Categoria_ID,
-                DS_categoria                as Categoria,
-                NM_produto                  as Nome,
+                ds_categoria                as Categoria,
+                nm_produto                  as Nome,
                 TB_PRODUTO.id_animal        as Animal_ID,
-                NM_animal                   as Animal,
+                nm_animal                   as Animal,
                 ds_produto                  as Descrição,
-                NR_vendas                   as Vendas,
-                NR_qntdEstoque              as Estoque,
-                VL_preco                    as Preço,
-                NR_desconto                 as Desconto,
-                BT_disponivel               as Disponível,
+                nr_vendas                   as Vendas,
+                nr_qntdEstoque              as Estoque,
+                vl_preco                    as Preço,
+                nr_desconto                 as Desconto,
+                bt_disponivel               as Disponível,
                 dt_cadastro                 as Cadastro,
-                DT_lancamento               as Lançamento,
-                VL_avaliacao                as Avaliação,
+                dt_lancamento               as Lançamento,
+                vl_avaliacao                as Avaliação,
                 qtd_avaliacoes              as Avaliações,
-                QTD_favoritos               as Favoritos,
-                NM_adm                      as Adm,
+                qtd_favoritos               as Favoritos,
+                nm_adm                      as Adm,
                 TB_PRODUTO.id_adm           as Adm_ID
 
                 from TB_PRODUTO
 
                     Inner join TB_IMAGEM
-                        ON TB_PRODUTO.ID_produto=TB_IMAGEM.ID_produto
+                        ON TB_PRODUTO.id_produto=TB_IMAGEM.id_produto
                     Inner Join TB_CATEGORIA
-                        ON TB_PRODUTO.ID_categoria=TB_CATEGORIA.ID_categoria
+                        ON TB_PRODUTO.id_categoria=TB_CATEGORIA.id_categoria
                     Inner Join TB_ANIMAL
-                        ON TB_PRODUTO.ID_animal=TB_ANIMAL.ID_animal
+                        ON TB_PRODUTO.id_animal=TB_ANIMAL.id_animal
                     Inner Join TB_LOGIN_ADM
-						ON	TB_PRODUTO.ID_adm=TB_LOGIN_ADM.ID_adm
+						ON	TB_PRODUTO.id_adm=TB_LOGIN_ADM.id_adm
 
-                        Where NR_posicao=1 `;
+                        Where nr_posicao=1 `;
 
     let comandoCondicao=``;
     if(filtro.semEstoque){
@@ -106,29 +106,29 @@ export async function consultarProdutos(filtro){
 
     if(filtro.maisVendidos){
 
-        colunas[contarPosicoes]=`NR_vendas desc`;
+        colunas[contarPosicoes]=`nr_vendas desc`;
 
         contarPosicoes=contarPosicoes+1;
     }
 
     if(filtro.melhorAvaliados){
 
-        colunas[contarPosicoes]=`VL_avaliacao desc`;
+        colunas[contarPosicoes]=`vl_avaliacao desc`;
 
         contarPosicoes=contarPosicoes+1;
     }
 
     if(filtro.maisFavoritados){
 
-        colunas[contarPosicoes]=`QTD_favoritos desc`;
+        colunas[contarPosicoes]=`qtd_favoritos desc`;
 
         contarPosicoes=contarPosicoes+1;
     }
 
     if(filtro.menorEstoque){
 
-        colunas[contarPosicoes]=`NR_qntdEstoque asc`;
-        comandoCondicao=comandoCondicao+` and NR_qntdEstoque!=0 `;
+        colunas[contarPosicoes]=`nr_qntdEstoque asc`;
+        comandoCondicao=comandoCondicao+` and nr_qntdEstoque!=0 `;
 
         contarPosicoes=contarPosicoes+1;
     }
