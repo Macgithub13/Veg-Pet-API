@@ -2,7 +2,7 @@ import connection from "../connection.js";
 
 export async function consultaMaisVendidos(){
     const comando = `
-        Select  TB_PRODUTO.ID_PRODUTO AS ID,    
+        Select  TB_PRODUTO.id_produto AS ID,    
                 ds_imagem  as Capa,
                 nm_produto as Nome,
                 vl_avaliacao as Avaliação,
