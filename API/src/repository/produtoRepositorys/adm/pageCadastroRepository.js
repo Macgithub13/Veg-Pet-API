@@ -49,7 +49,7 @@ export async function verificarProduto(id){
 // Ver o último produto cadastrado para a página de conclusão do cadastro
 export async function ultimoProduto(){
 
-    const command=`SELECT id_produto FROM TB_PRODUTO ORDER BY id_produto DESC LIMIT 1`;
+    const command=`SELECT id_produto as ID FROM TB_PRODUTO ORDER BY id_produto DESC LIMIT 1`;
 
     const [resp]=await connection.query(command,[]);
 
